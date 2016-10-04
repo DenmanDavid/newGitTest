@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+	<title>Quiz</title>
+</head>
+<body>
+	<p id="myParagraph">A paragraph!</p>
+</body>
+<script>
+/*
+David Denman
+Computer as a Medium
+9-17-2016
+*/
+
+	var question = ['What is your quest?','What is the airspeed velocity of an unladen swallow?','What...is your favorite color?!']
+	var score = 0;
+	var answers = [['To seek the grail','I don\'t know that','To be in Monty Python'],['African or European?','92','5'],['Blue!','No!','Yelloooooow!']];
+	//['Blue!','No!','Yelloooooow!']
+	
+	console.log(answers);
+	console.log(answers[1][0]);
+	var name = prompt('What is your name?');
+	//alert {'A message'};
+	document.getElementById('myParagraph').innerHTML = 'Hello ' + name + '!';
+	console.log(typeof name);
+	var age = prompt('How old are you?');
+	console.log(typeof age);
+	age = Number(age);
+	console.log(typeof age);
+	
+	if (age < 60) {
+		alert('Go and do something with your life!');
+	} else {
+		alert('Where\'s the applesauce?');
+	}	
+	
+	for (var i=0; i < age; i++) {
+		document.write(i);
+		document.write(' ');
+	}
+	
+	for (var i=0; i < question.length; i++) {
+	
+		var guess = prompt(question[i] + '\n\u2022 ' + answers[i][0] + '\n\u2022 ' + answers[i][1] + '\n\u2022 ' +  answers[i][2]);
+	
+		if (guess === answers[i][0]) {
+			score += 3;
+			console.log(score);
+		} else if (guess === answers[i][1]){
+			score += 2;
+			console.log(score);
+		} else if (guess === answers [i][2]){
+			score += 1;
+			console.log(score);
+		}
+	}
+	
+	/* 
+	var guess = prompt(question[0] + '\n\u2022 ' + answers[0][0] + '\n\u2022 ' + answers[0][1] + '\n\u2022 ' +  answers[0][2]);
+	
+	if (guess === answers[0][0]) {
+		score += 3;
+		console.log(score);
+	} else if (guess === answers[0][1]){
+		score += 2;
+		console.log(score);
+	} else if (guess === answers [0][2]){
+		score += 1;
+		console.log(score);
+	}
+	
+	var guess = prompt(question[1] + '\n\u2022 ' + answers[1][0] + '\n\u2022 ' + answers[1][1] + '\n\u2022 ' +  answers[1][2]);
+	
+	if (guess === answers[1][0]) {
+		score += 3;
+		console.log(score);
+	} else if (guess === answers[1][1]){
+		score += 2;
+		console.log(score);
+	} else if (guess === answers [1][2]){
+		score += 1;
+		console.log(score);
+	}
+	
+	var guess = prompt(question[2] + '\n\u2022 ' + answers[2][0] + '\n\u2022 ' + answers[2][1] + '\n\u2022 ' +  answers[2][2]);
+	
+	if (guess === answers[2][0]) {
+		score += 3;
+		console.log(score);
+	} else if (guess === answers[2][1]){
+		score += 2;
+		console.log(score);
+	} else if (guess === answers [2][2]){
+		score += 1;
+		console.log(score);
+	}
+	*/
+	
+	var mathProblem = prompt('What is 6 x 7?');
+	var y = 6 * 7;
+	
+	if (mathProblem === y.toString()) {
+		alert('Well, if you\'re going to be boring.\n\You are technically correct; the best kind of correct.');
+			score += 5;
+	} else if (mathProblem === 'The answer to life, the universe and everything') {
+		alert('Well done! Know thy memes!');
+	} else {
+		alert('No credit for partial answers.');
+	} 
+	document.getElementById('myParagraph').innerHTML = 'Hello ' + name + '!' + '<br>Score: ' + score;
+	
+</script>
+</html>
