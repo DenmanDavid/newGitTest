@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+	<title>Quiz</title>
+</head>
+<body> 
+  <h2 id="myParagraph">Which Superhero are you?</h2>
+  <h3 id="questionHeader">Question goes where?!</h3>
+	
+
+  <input type="radio" id="0" name="answ" value="0"> A.
+  <label id="answ1"></label>
+  <br>
+  <input type="radio" id="1" name="answ" value="1"> B. 
+  <label id="answ2"></label>
+  <br>
+  <input type="radio" id="2" name="answ" value="2"> C. 
+  <label id="answ3"></label>
+  <br>
+  <input type="radio" id="3" name="answ" value="3"> D. 
+  <label id="answ4"></label>
+  <br>
+  <button id="next">Next</button>
+  <br>
+  
+</body>
+<script>
+/*
+David Denman
+Computer as a Medium
+10-04-2016
+*/
+
+//I saved adding images for last, but was not able to make an array of images to cycle through for each question and result in time.
+
+	//Question bank
+	var question = ['Where are you from?','What do you value?','What...is your favorite color?!','Do you believe in working with others?',
+					'What do you think your friends like least about you?','What do you think your friends value most about you?','How do you fight your enemies?',
+					'How did you get your superpower?','A civilian\'s car veers off a bridge and is plummeting towards the water. What do you do?',
+					'You see a man eating chocolate ice cream. What do you do?']  
+	
+	//Answers bank
+	var answers = [['Spaaaaace','An island of paradise','The 1%','Undah da Sea!'],['Truth and Justice','Strength and Wisdom','Vengeance and CONSTANT VIGILANCE!','Marine life conservation'],
+				   ['Blue','Red','Blacker than black','Sea-green'],['Of course! The more the merrier!','Cooperation can help.','I only let people work FOR me.','All I need is help from my whale friends!'],
+				   ['I think I might have too many powers...','My rigid beliefs and judgements.','I don\'t have "friends", only associates.','I don\'t think they truly appreciate my whale friends.'],
+				   ['My clear moral compass and compassion','My wisdom and strength','My intellect and commitment','My sea friends!'],['I beat them into submission.','I beat them into submission.','I beat them into submission after scaring the crap out of them.','I call upon my whale friends!'],
+				   ['From the energy of the sun.','From the blessings of my gods.','Super what now?','I was born this way!'],
+				   ['Fly over and catch the car before placing it back on the bridge.','Fly over and lasso the car before pulling it back up onto the bridge.','Use your grappling gun to swing to the car and extract the passenger in mid-air.','Call your whale friends to catch them!'],
+				   ['Give him another cone while also remind him to brush his teeth afterwards.','Ask him where he purchased his treat.','Kick that scoundrel in the head.','Call your whale friends to procure some ice cream for yourself.']]; 
+					
+
+	
+	var questNum = 0;
+	console.log(questNum);
+	
+	//score variables
+	var batMan = 0;
+	var wonderWoman = 0;
+	var superMan = 0;
+	var aquaMan = 0;
+	
+
+	function setHeader(questNum) {  //Writes the question on the screen
+		var questionHeaderEl = document.getElementById("questionHeader");
+		questionHeaderEl.innerHTML = question[questNum];
+	}
+
+	function setAnswer(idEl, questNum, choiceNum) {  //Writes each answer
+		var choiceEl = document.getElementById(idEl);
+		choiceEl.innerHTML = answers[questNum][choiceNum];
+	}
+
+	function setQuest(){  //Calls the functions to populate the question and answers
+		setHeader(questNum);
+		setAnswer("answ1", questNum, 0);
+		setAnswer("answ2", questNum, 1);
+		setAnswer("answ3", questNum, 2);
+		setAnswer("answ4", questNum, 3);	
+	}
+	
+	function storeAnsw(){   //Tracks the user's answers
+		
+	  if (document.getElementById('0').checked ) {
+		console.log('Super');
+		superMan++;
+		} else if (document.getElementById('1').checked ){
+			console.log('Wonder');
+			wonderWoman++;
+		  } else if (document.getElementById('2').checked ){
+			  console.log('Bat');
+			  batMan++;
+			} else {
+				console.log('Aqua');
+				aquaMan++;
+			}	
+		console.log(aquaMan);	
+	}
+		
+	function finishedCheck(){   //Checks if the quiz is over and then determines the result
+		if (questNum >= question.length){
+			if (superMan > batMan && superMan > wonderWoman && superMan > aquaMan){
+				document.body.innerHTML = "You are the world's biggest boy scout, Superman!";
+			} else if (batMan > superMan && batMan > wonderWoman && batMan > aquaMan){
+				document.body.innerHTML = "You are the Dark Knight, Batman!";
+			} else if (wonderWoman > superMan && wonderWoman > batMan && wonderWoman > aquaMan){
+				document.body.innerHTML = "You are the Amazon, Wonder Woman!";
+			} else {
+				document.body.innerHTML = "You are the bringer of WWWHHAAAAAAALLLEESSSSS, that aqua guy!";
+			}
+		}
+	}
+	
+	function nextQuest(){    //Main function for writing subsequent questions
+		storeAnsw();
+		questNum++;
+		finishedCheck();
+		setQuest();
+		console.log(questNum);
+	}
+	
+	var nextButton = document.getElementById("next");    
+	nextButton.addEventListener("click", nextQuest, false);
+	
+	setQuest();  //Starts the program
+	
+	
+
+</script>
+</html>
