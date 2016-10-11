@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<title>Mastermind3</title>
+<script>
+var secret = 'ABCDEF';
+function init() {
+	var button = document.getElementById('startButton');
+	button.onclick = myButtonClick;
+	
+}
+
+function myButtonClick() {
+	//alert('Button clicked');
+	
+	var userInput = document.getElementById('userGuess').value;
+	var ul = document.getElementById('guessList');
+	var li = document.createElement('li');
+	
+	var userTry = userInput.toUpperCase();
+	//Convert user input to uppercase before comparison
+	for (var i=0; i < secret.length; i++) {
+		var found = false;
+		for (var x=0; x < secret.length; x++){
+			
+			if ((userTry.charAt(i))===(secret.charAt(x))) {
+				//if our code and guess are a match, display letter in green
+				
+				li.innerHTML += userTry.charAt(i).fontcolor('green');
+				found = true;
+				//need to show the user
+			} else {
+				li.innerHTML += userTry.charAt(i).fontcolor('red');
+				//found = true;
+			}
+		}
+		
+		if (found === false){
+			li.innerHTML += userTry.charAt(x).fontcolor('black');
+			//need to show user character is totally wrong
+		}
+	}
+	ul.appendChild(li);
+	//alert(userTry);
+}
+
+
+
+window.onload = init;
+	//var userAttempt = document.getElementById('userGuess');
+	//var userTry = userAttempt.value;
+</script>
+</head>
+<body>
+	<form>
+	<input type="text" id="userGuess" size="15" placeholder="Your Guess">
+	<input type="button" id="startButton" value="Guess the Code">
+	</form>
+	<ul id="guessList">
+
+	</ul>
+	
+</body>
+</html>
